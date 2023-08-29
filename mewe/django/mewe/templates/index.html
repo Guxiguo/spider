@@ -1,0 +1,589 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- logo -->
+  <link rel="icon" href="{% static "assets/images/fevicon.png" %}" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>ChordsOfCode</title>
+
+  <!-- css区-start -->
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/bootstrap.css" %}" />
+  <!-- font awesome style -->
+  <link href="{% static "assets/css/font-awesome.min.css" %}" rel="stylesheet" />
+  <!-- 总样式-css -->
+  <link href="{% static "assets/css/style.css" %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static "assets/css/responsive.css" %}" rel="stylesheet" />
+  <!-- css区-end -->
+  <!-- jquery -->
+  <script src="{% static "assets/js/jquery-3.4.1.min.js" %}"></script>
+  <!-- 滑动验证码-start -->
+  <link rel="stylesheet" href="{% static "assets/css/drag.css" %}">
+  <script src="{% static "assets/js/drag.js" %}"></script>
+  <!-- 滑动验证码-end -->
+
+
+</head>
+<script>
+  function onTopClick() {
+
+    window.location.hash = "#x";
+
+  }
+</script>
+
+<body>
+
+  <div class="hero_area">
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- 顶栏-start -->
+    <!-- ---------------------------------------------------------------------- -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="">
+            <span>Chords-Of-Code</span>
+          </a>
+          <!-- 分辨率适配按钮-start -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+          <!-- 分辨率适配按钮-end -->
+
+          <!-- 顶栏功能按钮-start -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <!-- 主页_按钮 -->
+              <li class="nav-item">
+                <a class="nav-link" href=""><svg t="1605257481275" class="icon" viewBox="0 0 1024 1024"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8251" width="25" height="25">
+                    <path
+                      d="M946.5 505L560.1 118.8l-25.9-25.9c-12.3-12.2-32.1-12.2-44.4 0L77.5 505c-12.3 12.3-18.9 28.6-18.8 46 0.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8 12.1-12.1 18.7-28.2 18.7-45.3 0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204z m217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z"
+                      p-id="8252" fill="#ffffff"></path>
+                  </svg>主页<span class="sr-only">(current)</span></a>
+              </li>
+              <!-- 教程_按钮 -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="about.html">
+                  <svg t="1609661884150" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8018" width="25" height="25">
+                    <path
+                      d="M928 161H699.2c-49.1 0-97.1 14.1-138.4 40.7L512 233l-48.8-31.3C422 175.1 373.9 161 324.8 161H96c-17.7 0-32 14.3-32 32v568c0 17.7 14.3 32 32 32h228.8c49.1 0 97.1 14.1 138.4 40.7l44.4 28.6c1.3 0.8 2.8 1.3 4.3 1.3s3-0.4 4.3-1.3l44.4-28.6C602 807.1 650.1 793 699.2 793H928c17.7 0 32-14.3 32-32V193c0-17.7-14.3-32-32-32zM324.8 721H136V233h188.8c35.4 0 69.8 10.1 99.5 29.2l48.8 31.3 6.9 4.5v462c-47.6-25.6-100.8-39-155.2-39z m563.2 0H699.2c-54.4 0-107.6 13.4-155.2 39V298l6.9-4.5 48.8-31.3c29.7-19.1 64.1-29.2 99.5-29.2H888v488z"
+                      p-id="8019" fill="#ffffff"></path>
+                    <path
+                      d="M396.9 361H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0.1-4.1-3.1-7.5-7-7.5zM620 368.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0-4.1-3.2-7.5-7.1-7.5H627.1c-3.9 0-7.1 3.4-7.1 7.5zM396.9 501H211.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0.1-4.1-3.1-7.5-7-7.5zM812.9 501H627.1c-3.9 0-7.1 3.4-7.1 7.5v45c0 4.1 3.2 7.5 7.1 7.5h185.7c3.9 0 7.1-3.4 7.1-7.5v-45c0.1-4.1-3.1-7.5-7-7.5z"
+                      p-id="8020" fill="#ffffff"></path>
+                  </svg>
+                  </svg>教程</a>
+              </li> -->
+            </ul>
+            <!-- 登陆注册/进入平台 -->
+            <!-- {% if username == None and email == None %}
+            <div class="quote_btn-container">
+              <a href="{% url 'login' %}">
+                <span>
+                  <svg t="1605257315848" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8058" width="35" height="35">
+                    <path
+                      d="M858.5 763.6c-18.9-44.8-46.1-85-80.6-119.5-34.5-34.5-74.7-61.6-119.5-80.6-0.4-0.2-0.8-0.3-1.2-0.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.8 18.9-85 46-119.5 80.6-34.5 34.5-61.6 74.7-80.6 119.5C146.9 807.5 137 854 136 901.8c-0.1 4.5 3.5 8.2 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c0.1 4.4 3.6 7.8 8 7.8h60c4.5 0 8.1-3.7 8-8.2-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+                      p-id="8059" fill="#ffffff"></path>
+                  </svg>
+                  登录/注册
+                </span>
+              </a>
+            </div>
+            {% else %}
+            <div class="quote_btn-container">
+              <a href="{% url 'mycode' email %}">
+                <span>
+                  <svg t="1605257315848" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8058" width="35" height="35">
+                    <path
+                      d="M858.5 763.6c-18.9-44.8-46.1-85-80.6-119.5-34.5-34.5-74.7-61.6-119.5-80.6-0.4-0.2-0.8-0.3-1.2-0.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.8 18.9-85 46-119.5 80.6-34.5 34.5-61.6 74.7-80.6 119.5C146.9 807.5 137 854 136 901.8c-0.1 4.5 3.5 8.2 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c0.1 4.4 3.6 7.8 8 7.8h60c4.5 0 8.1-3.7 8-8.2-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+                      p-id="8059" fill="#ffffff"></path>
+                  </svg>
+                  {% if username|length > 8 %}
+                  {{ username|truncatechars:8}}...的代码
+                  {% else %}
+                  {{ username }}的代码
+                  {% endif %}
+                </span>
+              </a>
+            </div>
+            {% endif %} -->
+          </div>
+          <!-- 顶栏功能按钮-end -->
+        </nav>
+      </div>
+    </header>
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- 顶栏-end -->
+    <!-- ---------------------------------------------------------------------- -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container ">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      编程 <br>
+                      &nbsp&nbsp&nbsp&nbsp进化
+                    </h1>
+                    <p>
+                      借助云计算技术，在线进行编程。</p>
+                    <div class="btn-box">
+                      <a href="#x" class="btn-1">
+                        了解更多
+                      </a>
+                      <a href="{% url 'mycode' email %}" class="btn-2">
+                        立即使用
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class=" col-lg-10 mx-auto">
+                      <div class="img-box">
+                        <img src="{% static "assets/images/slider-img.png" %}" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- service section -->
+
+  <section class="service_section layout_padding" id="x">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2 style="margin-bottom: 50px;">
+          多人实时协作的「云端 Compiler」
+        </h2>
+      </div>
+    </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s1.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                HelloWorld
+              </h4>
+              <p style="margin-bottom: 50px;">
+                print("HelloWorld,Coding evolution")
+              </p>
+              <!-- <a href="">
+                Read More
+                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+
+              </a> -->
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s2.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                学习
+              </h4>
+              <p style="margin-bottom: 50px;">
+                包含完整python入门视频教程，学习变得多彩
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 ">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s3.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                教学
+              </h4>
+              <p style="margin-bottom: 50px;">
+                多人实时编译，生动的编程教学
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s4.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                支持全部python库
+              </h4>
+              <p style="margin-bottom: 50px;">
+                用户根据需要安装依赖库，pip install如此简单
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s5.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                云端存储
+              </h4>
+              <p style="margin-bottom: 50px;">
+                实时云端存储，解放您的Ctrl S
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+          <div class="box ">
+            <div class="img-box">
+              <img src="images/s6.png" alt="">
+            </div>
+            <div class="detail-box">
+              <h4 style="font-weight: 600;">
+                一键分享
+              </h4>
+              <p style="margin-bottom: 50px;">
+                将这惊人代码，告别等待与传输
+              </p>
+              <!-- <a href="">
+                Read More
+                <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+一名普通的但对编程充满热爱与梦想的大学生，编程既是生活也是爱好，在万物云化的时代，编程也必将又本地过渡到云端编程
+              </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end service section -->
+  <!-- client section -->
+  <!-- <section class="client_section ">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          听听用户的体验
+        </h2>
+        <p>
+          Even slightly believable.
+        </p>
+      </div>
+    </div>
+    <div class="container px-0">
+      <div id="customCarousel2" class="carousel  slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 mx-auto">
+                  <div class="box">
+                    <div class="img-box">
+                      <img src="images/client.jpg" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <div class="client_info">
+                        <div class="client_name">
+                          <h5>
+                            Morojink
+                          </h5>
+                          <h6>
+                            Customer
+                          </h6>
+                        </div>
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                      </div>
+                      <p>
+                        网站为我学习编程提供了很大帮助！
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 mx-auto">
+                  <div class="box">
+                    <div class="img-box">
+                      <img src="images/client.jpg" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <div class="client_info">
+                        <div class="client_name">
+                          <h5>
+                            Morojink
+                          </h5>
+                          <h6>
+                            Customer
+                          </h6>
+                        </div>
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                      </div>
+                      <p>
+                        能在线完成代码真是太棒了！
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-10 mx-auto">
+                  <div class="box">
+                    <div class="img-box">
+                      <img src="images/client.jpg" alt="">
+                    </div>
+                    <div class="detail-box">
+                      <div class="client_info">
+                        <div class="client_name">
+                          <h5>
+                            Morojink
+                          </h5>
+                          <h6>
+                            Customer
+                          </h6>
+                        </div>
+                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                      </div>
+                      <p>
+                        希望能增加协同功能！
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel_btn-box">
+          <a class="carousel-control-prev" href="#customCarousel2" role="button" data-slide="prev">
+            <i class="fa fa-angle-left" aria-hidden="true"></i>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#customCarousel2" role="button" data-slide="next">
+            <i class="fa fa-angle-right" aria-hidden="true"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+  <!-- end client section -->
+  <!-- about section -->
+
+    <section class="client_section ">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2 style="margin-top:50px;margin-bottom:30px">
+            教程
+          </h2>
+          <iframe src="//player.bilibili.com/player.html?aid=883033382&amp;cid=188967872&amp;page=1" frameborder="no"
+            scrolling="no" width="95%" height="800"></iframe>
+        </div>
+      </div>
+    </section>
+
+
+  <section class="client_section ">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2 style="margin-top:50px;margin-bottom:30px">
+          关于我
+        </h2>
+        <p style="margin-bottom:70px;width: 70%;">
+          一名普通的但对编程充满热爱与梦想的大学生，编程既是生活也是爱好。愿我的网站能给你带来全新的体验或是帮助，我们的小目标是：支持更多语言；支持多人同时编辑、运行；编译器支持第三方插件；更加智能的编译器，愿更多志同道合朋友加入进来，
+          “编程进化！”
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+
+  <!-- ------------------------------------------------------------------------>
+  <!-- 信息栏-start -->
+  <!-- ------------------------------------------------------------------------>
+  <section class=" info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <!-- 信息栏-开发者-start -->
+          <div class="info_contact">
+            <h4>
+              开发者
+            </h4>
+            <div class="contact_link_box">
+              <a href="" onmouseover="touchmedia_over_Dev()" onmouseout="touchmedia_out_Dev()">
+                <svg name="developer" t="1609661415780" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                  xmlns="http://www.w3.org/2000/svg" p-id="8015" width="30" height="30">
+                  <path
+                    d="M632 888H392c-4.4 0-8 3.6-8 8v32c0 17.7 14.3 32 32 32h192c17.7 0 32-14.3 32-32v-32c0-4.4-3.6-8-8-8zM512 64c-181.1 0-328 146.9-328 328 0 121.4 66 227.4 164 284.1V792c0 17.7 14.3 32 32 32h264c17.7 0 32-14.3 32-32V676.1c98-56.7 164-162.7 164-284.1 0-181.1-146.9-328-328-328z m127.9 549.8L604 634.6V752H420V634.6l-35.9-20.8C305.4 568.3 256 484.5 256 392c0-141.4 114.6-256 256-256s256 114.6 256 256c0 92.5-49.4 176.3-128.1 221.8z"
+                    p-id="8016" fill="#ffffff"></path>
+                </svg>
+                <span>
+                  大碗豆汁儿
+                </span>
+            </div>
+          </div>
+          <!-- 信息栏-开发者-end -->
+          <!-- 信息栏-媒体-start -->
+          <div class="info_social">
+            <a href="http://wpa.qq.com/msgrd?v=3&uin=2876363140&site=qq&menu=yes" target="_blank">
+              <svg name="mediaQQ" onmouseover="touchmedia_over_QQ()" onmouseout="touchmedia_out_QQ()" t="1609661562932"
+                class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3105"
+                width="30" height="30">
+                <path
+                  d="M878.839923 489.557872c-29.743418-46.99943-42.632983-97.607038-50.350758-151.176095C800.417829 143.543254 608.344279 17.634636 422.355307 75.30101c-122.815163 38.07927-197.606567 123.735116-222.487234 250.495124-11.623735 59.217706-22.740934 116.999714-56.889685 169.790034-34.465976 53.279461-43.7402 115.842355-39.244816 179.300642 2.598174 36.664038 13.791098 70.054519 40.995693 97.232508 8.18338 8.17417 16.292058 21.673625 15.855106 32.385595C157.439752 881.734856 203.099674 922.55454 267.783883 945.100022c71.653947 24.974811 144.967696 23.877827 215.783555-5.913687 19.298532-8.120958 34.81083-11.057847 55.073316-1.221828 58.244542 28.272927 120.866788 28.719088 182.709275 17.476023 98.704023-17.943674 142.117788-71.040986 142.442176-169.583327 30.92329-22.388916 50.297546-53.78702 54.758138-93.076862C926.706093 620.973924 917.838122 551.180348 878.839923 489.557872zM838.798974 657.789411c-0.548492 18.203594-7.91425 36.201503-15.062044 66.660212-25.233708-21.372773-39.48734-33.44574-54.692646-46.325072-17.59882 26.982538-34.342156 52.651151-52.5304 80.537268 10.998495 6.033413 23.922852 10.174734 32.673144 18.636452 12.17632 11.773138 27.230178 25.605168 30.187533 40.685631 4.279467 21.827121-15.522532 34.543747-33.881668 42.757826-58.291614 26.081005-118.835526 28.999474-175.528736 0.451278-40.527019-20.407796-73.857125-21.776979-114.390283-0.441045-53.107545 27.950586-110.563118 24.686239-166.788677 4.916986-6.126534-2.15406-12.06785-5.220908-17.572214-8.691963-36.835953-23.222911-37.795814-52.718689-2.01796-76.576049 11.973706-7.984858 25.355481-13.856589 38.788421-21.067828-17.692964-27.946492-34.155914-53.952796-51.922557-82.016968-14.903431 12.717649-29.839609 25.463951-45.512566 38.838563-28.297486-21.744233-26.875091-48.762587-25.337061-74.009597 3.244904-53.263088 17.491373-103.337553 53.943586-144.310733 13.664208-15.358803 18.34788-31.764448 21.015639-52.398394 5.809309-44.936445 14.762215-89.923032 27.453259-133.423779 30.692023-105.216343 129.925095-174.186158 237.44183-168.359452 105.724926 5.728468 195.385992 82.576717 217.572294 187.953719 9.342786 44.37465 15.066137 89.524966 24.912389 133.771703 2.943029 13.225209 13.254885 25.369807 21.944801 36.657898C824.935222 548.074613 840.521199 600.542592 838.798974 657.789411z"
+                  p-id="3106" fill="#ffffff"></path>
+              </svg>
+            </a>
+            <a href="https://space.bilibili.com/175397396" target="_blank">
+              <svg name="mediaBiliBili" onmouseover="touchmedia_over_Bi()" onmouseout="touchmedia_out_Bi()"
+                t="1609661669285" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                p-id="3705" width="30" height="30">
+                <path
+                  d="M306.005333 117.632L444.330667 256h135.296l138.368-138.325333a42.666667 42.666667 0 0 1 60.373333 60.373333L700.330667 256H789.333333A149.333333 149.333333 0 0 1 938.666667 405.333333v341.333334a149.333333 149.333333 0 0 1-149.333334 149.333333h-554.666666A149.333333 149.333333 0 0 1 85.333333 746.666667v-341.333334A149.333333 149.333333 0 0 1 234.666667 256h88.96L245.632 177.962667a42.666667 42.666667 0 0 1 60.373333-60.373334zM789.333333 341.333333h-554.666666a64 64 0 0 0-63.701334 57.856L170.666667 405.333333v341.333334a64 64 0 0 0 57.856 63.701333L234.666667 810.666667h554.666666a64 64 0 0 0 63.701334-57.856L853.333333 746.666667v-341.333334A64 64 0 0 0 789.333333 341.333333zM341.333333 469.333333a42.666667 42.666667 0 0 1 42.666667 42.666667v85.333333a42.666667 42.666667 0 0 1-85.333333 0v-85.333333a42.666667 42.666667 0 0 1 42.666666-42.666667z m341.333334 0a42.666667 42.666667 0 0 1 42.666666 42.666667v85.333333a42.666667 42.666667 0 0 1-85.333333 0v-85.333333a42.666667 42.666667 0 0 1 42.666667-42.666667z"
+                  p-id="3706" fill="#ffffff"></path>
+              </svg>
+            </a>
+            <a href="https://weibo.com/dawandouzhier" target="_blank">
+              <svg name="mediaWeiBo" onmouseover="touchmedia_over_Wb()" onmouseout="touchmedia_out_Wb()"
+                t="1609661691626" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.or g/2000/svg"
+                p-id="4608" width="30" height="30">
+                <path
+                  d="M845.248 466.048c-1.344 0-2.688-0.064-4.032-0.448-9.536-2.112-15.616-11.648-13.504-21.312 11.2-49.728 6.592-84.992-13.568-104.768-33.344-32.768-100.928-16.96-101.568-16.768-9.664 2.368-19.328-3.584-21.568-13.12-2.304-9.6 3.456-19.2 13.12-21.568 3.584-0.896 87.424-20.736 134.912 25.856 29.568 29.056 37.504 75.456 23.424 138.112C860.736 460.416 853.376 466.048 845.248 466.048z"
+                  p-id="4609" fill="#ffffff"></path>
+                <path
+                  d="M961.536 514.88c-1.344 0-2.56-0.128-3.968-0.32-12.928-2.176-21.696-14.464-19.584-27.328 20.032-121.088 3.84-205.888-48.192-252.224-80.256-71.296-223.616-30.784-225.088-30.4-12.544 3.648-25.728-3.648-29.44-16.192C631.68 175.872 638.912 162.688 651.584 158.912c6.784-2.048 169.6-48.32 269.76 40.384 65.216 57.856 86.656 157.312 63.68 295.616C983.04 506.624 972.992 514.88 961.536 514.88z"
+                  p-id="4610" fill="#ffffff"></path>
+                <path
+                  d="M744.512 514.88c0 0 98.688-234.816-230.4-117.824 10.432-123.392-43.136-198.272-203.776-107.072 0 0-521.92 353.856-141.248 579.904 0 0 478.72 197.76 695.936-169.536C908.096 568.064 780.224 512.896 744.512 514.88zM435.648 869.44c-158.336 18.112-296.512-52.288-308.544-157.44S233.6 506.944 391.936 488.832c158.4-18.24 296.576 52.224 308.608 157.312C712.64 751.232 593.984 851.264 435.648 869.44z"
+                  p-id="4611" fill="#ffffff"></path>
+                <path
+                  d="M550.144 680.384C543.616 608.448 469.12 556.352 383.808 564.096c-85.312 7.744-149.184 72.256-142.656 144.256 6.528 72 80.96 124.096 166.272 116.288C492.8 816.96 556.608 752.32 550.144 680.384zM347.776 771.712c-26.368 0-47.808-19.968-47.808-44.544 0-24.576 21.44-44.608 47.808-44.608 26.496 0 47.872 20.032 47.872 44.608C395.648 751.744 374.208 771.712 347.776 771.712zM430.464 696.64c-11.84 0-21.44-9.536-21.44-21.376 0-11.904 9.6-21.504 21.44-21.504s21.44 9.6 21.44 21.504C451.968 687.04 442.304 696.64 430.464 696.64z"
+                  p-id="4612" fill="#ffffff"></path>
+              </svg>
+            </a>
+          </div>
+          <!-- 信息栏-媒体-end -->
+        </div>
+        <!-- 信息栏-链接-start -->
+        <div class="col-md-3">
+          <div class="info_link_box">
+            <h4>
+              链接
+            </h4>
+            <div class="info_links">
+              <a class=""  href="{% url 'index' %}">
+                <img src="{% static "assets/images/nav-bullet.png" %}" alt="">
+                主页
+              </a>
+              <!-- <a class="" href="service.html">
+                <img src="{% static "assets/images/nav-bullet.png" %}" alt="">
+                加入我
+              </a>
+              <a class="" href="price.html">
+                <img src="{% static "assets/images/nav-bullet.png" %}" alt="">
+                关于作者
+              </a> -->
+            </div>
+          </div>
+        </div>
+        <!-- 信息栏-链接-end -->
+        <!-- 信息栏-信息-start -->
+        <div class="col-md-3">
+          <div class="info_detail">
+            <h4>
+              反馈
+            </h4>
+            <p>
+              在使用本网站时，若您有各种意见与建议，或是遇到bug与缺陷，欢迎您联系作者反馈，您的反馈为我们更新、完善提供重要帮助！</p>
+            </p>
+          </div>
+        </div>
+        <!-- 信息栏-信息-end -->
+        <!-- 信息栏-支持-start -->
+        <div class="col-md-3 mb-0">
+          <h4>
+            联系作者<svg name="mediaQQs" t="1609661562932" class="icon" viewBox="0 0 1024 1024" version="1.1"
+              xmlns="http://www.w3.org/2000/svg" p-id="3105" width="25" height="25">
+              <path
+                d="M878.839923 489.557872c-29.743418-46.99943-42.632983-97.607038-50.350758-151.176095C800.417829 143.543254 608.344279 17.634636 422.355307 75.30101c-122.815163 38.07927-197.606567 123.735116-222.487234 250.495124-11.623735 59.217706-22.740934 116.999714-56.889685 169.790034-34.465976 53.279461-43.7402 115.842355-39.244816 179.300642 2.598174 36.664038 13.791098 70.054519 40.995693 97.232508 8.18338 8.17417 16.292058 21.673625 15.855106 32.385595C157.439752 881.734856 203.099674 922.55454 267.783883 945.100022c71.653947 24.974811 144.967696 23.877827 215.783555-5.913687 19.298532-8.120958 34.81083-11.057847 55.073316-1.221828 58.244542 28.272927 120.866788 28.719088 182.709275 17.476023 98.704023-17.943674 142.117788-71.040986 142.442176-169.583327 30.92329-22.388916 50.297546-53.78702 54.758138-93.076862C926.706093 620.973924 917.838122 551.180348 878.839923 489.557872zM838.798974 657.789411c-0.548492 18.203594-7.91425 36.201503-15.062044 66.660212-25.233708-21.372773-39.48734-33.44574-54.692646-46.325072-17.59882 26.982538-34.342156 52.651151-52.5304 80.537268 10.998495 6.033413 23.922852 10.174734 32.673144 18.636452 12.17632 11.773138 27.230178 25.605168 30.187533 40.685631 4.279467 21.827121-15.522532 34.543747-33.881668 42.757826-58.291614 26.081005-118.835526 28.999474-175.528736 0.451278-40.527019-20.407796-73.857125-21.776979-114.390283-0.441045-53.107545 27.950586-110.563118 24.686239-166.788677 4.916986-6.126534-2.15406-12.06785-5.220908-17.572214-8.691963-36.835953-23.222911-37.795814-52.718689-2.01796-76.576049 11.973706-7.984858 25.355481-13.856589 38.788421-21.067828-17.692964-27.946492-34.155914-53.952796-51.922557-82.016968-14.903431 12.717649-29.839609 25.463951-45.512566 38.838563-28.297486-21.744233-26.875091-48.762587-25.337061-74.009597 3.244904-53.263088 17.491373-103.337553 53.943586-144.310733 13.664208-15.358803 18.34788-31.764448 21.015639-52.398394 5.809309-44.936445 14.762215-89.923032 27.453259-133.423779 30.692023-105.216343 129.925095-174.186158 237.44183-168.359452 105.724926 5.728468 195.385992 82.576717 217.572294 187.953719 9.342786 44.37465 15.066137 89.524966 24.912389 133.771703 2.943029 13.225209 13.254885 25.369807 21.944801 36.657898C824.935222 548.074613 840.521199 600.542592 838.798974 657.789411z"
+                p-id="3106" fill="#ffffff"></path>
+            </svg>
+          </h4>
+          <form action="#">
+            <img style="width:150px;height:150px;"
+              src="https://jhcipic-1259226623.cos.ap-beijing.myqcloud.com/C8933DDA68E78CFD8570D06ED1AECB3AE.png" />
+          </form>
+        </div>
+        <!-- 信息栏-支持-end -->
+      </div>
+    </div>
+    <!-- 信息栏-copyright-start -->
+    <footer class="footer_section">
+      <div class="container">
+        <p>
+          Copyright &copy; 2020.ChordsOfCode All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </section>
+  <!-- ------------------------------------------------------------------------>
+  <!-- 信息栏-end -->
+  <!-- ------------------------------------------------------------------------>
+  <!-- js区-start -->
+  <script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="{% static "assets/js/bootstrap.js" %}"></script>
+  <!-- 主要功能-js -->
+  <script src="{% static "assets/js/script.js" %}"></script>
+  <!-- 底栏媒体触摸变色-js -->
+  <script src="{% static "assets/js/touchmedia.js" %}"></script>
+  <!-- js区-end -->
+
+
+</body>
+
+</html>

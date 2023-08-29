@@ -1,0 +1,315 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <!-- logo -->
+  <link rel="icon" href="{% static "assets/images/fevicon.png" %}" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>{{ codeFile_name }}</title>
+  <!-- css区-start -->
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- bootstrap -->
+  <link rel="stylesheet" type="text/css" href="{% static "assets/css/bootstrap.css" %}" />
+  <!-- font awesome style -->
+  <link href="{% static "assets/css/font-awesome.min.css" %}" rel="stylesheet" />
+  <!-- 总样式-css -->
+  <link href="{% static "assets/css/style.css" %}" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="{% static "assets/css/responsive.css" %}" rel="stylesheet" />
+  <!-- css区-end -->
+  <!-- jquery -->
+  <script src="{% static "assets/js/jquery-3.4.1.min.js" %}"></script>
+  <!-- 滑动验证码-start -->
+  <link rel="stylesheet" href="{% static "assets/css/drag.css" %}">
+  <script src="{% static "assets/js/drag.js" %}"></script>
+  <!-- 滑动验证码-end -->
+  <!-- confirm -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+  </link>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+  <!-- 剪贴板 -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/clipboard.js/1.5.12/clipboard.min.js">
+  </script>
+
+</head>
+
+<body class="sub_page" style="height: 100%;">
+
+  <div class="hero_area">
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- 顶栏-start -->
+    <!-- ---------------------------------------------------------------------- -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href="">
+            <span style="text-transform:none;">{{ codeFile_name }}</span>
+          </a>
+          <!-- 分辨率适配按钮-start -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class=""> </span>
+          </button>
+          <!-- 分辨率适配按钮-end -->
+          <!-- 顶栏功能按钮-start -->
+          <!-- 运行_按钮 -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav  ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="JavaScript:void(0)" onclick="runcode()"
+                  style="font-weight: bold;color:#08ff00"><svg t="1613634796706" class="icon" viewBox="0 0 1024 1024"
+                    version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="8054" width="25" height="25">
+                    <path
+                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64z m0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                      p-id="8055" fill="#08ff00"></path>
+                    <path
+                      d="M719.4 499.1l-296.1-215c-10.6-7.7-25.3-0.2-25.3 12.9v430c0 13.1 14.8 20.5 25.3 12.9l296.1-215c8.8-6.4 8.8-19.4 0-25.8z m-257.6 134V390.9L628.5 512 461.8 633.1z"
+                      p-id="8056" fill="#08ff00"></path>
+                  </svg>&nbsp运行</a>
+              </li>
+              <!-- 保存_按钮 -->
+              <!-- <li class="nav-item">
+                <a name="edit_save_Button" class="nav-link" href="JavaScript:void(0)" style="font-weight: bold"
+                  onclick="save_code()" title="上次保存时间:{{ save_time }}"><svg t="1613638315403" class="icon"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8055" width="25" height="25">
+                    <path
+                      d="M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184z m456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840z"
+                      p-id="8056" fill="#ffffff"></path>
+                    <path
+                      d="M512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144z m0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z"
+                      p-id="8057" fill="#ffffff"></path>
+                  </svg>保存</a>
+              </li> -->
+              <!-- 包_按钮 -->
+              <li class="nav-item">
+                <a name="installlib" class="nav-link" href="JavaScript:void(0)" onclick="pipinstall()"
+                  style="font-weight: bold">
+                  <svg t="1614321011390" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8057" width="25" height="25">
+                    <path
+                      d="M888.3 757.4h-53.8c-4.2 0-7.7 3.5-7.7 7.7v61.8H197.1V197.1h629.8v61.8c0 4.2 3.5 7.7 7.7 7.7h53.8c4.2 0 7.7-3.4 7.7-7.7V158.7c0-17-13.7-30.7-30.7-30.7H158.7c-17 0-30.7 13.7-30.7 30.7v706.6c0 17 13.7 30.7 30.7 30.7h706.6c17 0 30.7-13.7 30.7-30.7V765.1c0-4.3-3.5-7.7-7.7-7.7z"
+                      p-id="8058" fill="#ffffff"></path>
+                    <path
+                      d="M902 476H588v-76c0-6.7-7.8-10.5-13-6.3l-141.9 112c-4.1 3.2-4.1 9.4 0 12.6l141.9 112c5.3 4.2 13 0.4 13-6.3v-76h314c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z"
+                      p-id="8059" fill="#ffffff"></path>
+                  </svg>安装库</a>
+              </li>
+              <!-- 设置_按钮 -->
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'setting' email %}" style="font-weight: bold" target="_blank">
+                  <svg t="1610791670958" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8247" width="25" height="25">
+                    <path
+                      d="M924.8 625.7l-65.5-56c3.1-19 4.7-38.4 4.7-57.8s-1.6-38.8-4.7-57.8l65.5-56c10.1-8.6 13.8-22.6 9.3-35.2l-0.9-2.6c-18.1-50.5-44.9-96.9-79.7-137.9l-1.8-2.1c-8.6-10.1-22.5-13.9-35.1-9.5l-81.3 28.9c-30-24.6-63.5-44-99.7-57.6l-15.7-85c-2.4-13.1-12.7-23.3-25.8-25.7l-2.7-0.5c-52.1-9.4-106.9-9.4-159 0l-2.7 0.5c-13.1 2.4-23.4 12.6-25.8 25.7l-15.8 85.4c-35.9 13.6-69.2 32.9-99 57.4l-81.9-29.1c-12.5-4.4-26.5-0.7-35.1 9.5l-1.8 2.1c-34.8 41.1-61.6 87.5-79.7 137.9l-0.9 2.6c-4.5 12.5-0.8 26.5 9.3 35.2l66.3 56.6c-3.1 18.8-4.6 38-4.6 57.1 0 19.2 1.5 38.4 4.6 57.1L99 625.5c-10.1 8.6-13.8 22.6-9.3 35.2l0.9 2.6c18.1 50.4 44.9 96.9 79.7 137.9l1.8 2.1c8.6 10.1 22.5 13.9 35.1 9.5l81.9-29.1c29.8 24.5 63.1 43.9 99 57.4l15.8 85.4c2.4 13.1 12.7 23.3 25.8 25.7l2.7 0.5c26.1 4.7 52.8 7.1 79.5 7.1 26.7 0 53.5-2.4 79.5-7.1l2.7-0.5c13.1-2.4 23.4-12.6 25.8-25.7l15.7-85c36.2-13.6 69.7-32.9 99.7-57.6l81.3 28.9c12.5 4.4 26.5 0.7 35.1-9.5l1.8-2.1c34.8-41.1 61.6-87.5 79.7-137.9l0.9-2.6c4.5-12.3 0.8-26.3-9.3-35zM788.3 465.9c2.5 15.1 3.8 30.6 3.8 46.1s-1.3 31-3.8 46.1l-6.6 40.1 74.7 63.9c-11.3 26.1-25.6 50.7-42.6 73.6L721 702.8l-31.4 25.8c-23.9 19.6-50.5 35-79.3 45.8l-38.1 14.3-17.9 97c-28.1 3.2-56.8 3.2-85 0l-17.9-97.2-37.8-14.5c-28.5-10.8-55-26.2-78.7-45.7l-31.4-25.9-93.4 33.2c-17-22.9-31.2-47.6-42.6-73.6l75.5-64.5-6.5-40c-2.4-14.9-3.7-30.3-3.7-45.5 0-15.3 1.2-30.6 3.7-45.5l6.5-40-75.5-64.5c11.3-26.1 25.6-50.7 42.6-73.6l93.4 33.2 31.4-25.9c23.7-19.5 50.2-34.9 78.7-45.7l37.9-14.3 17.9-97.2c28.1-3.2 56.8-3.2 85 0l17.9 97 38.1 14.3c28.7 10.8 55.4 26.2 79.3 45.8l31.4 25.8 92.8-32.9c17 22.9 31.2 47.6 42.6 73.6L781.8 426l6.5 39.9z"
+                      p-id="8248" fill="#ffffff"></path>
+                    <path
+                      d="M512 326c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176z m79.2 255.2C570 602.3 541.9 614 512 614c-29.9 0-58-11.7-79.2-32.8C411.7 560 400 531.9 400 502c0-29.9 11.7-58 32.8-79.2C454 401.6 482.1 390 512 390c29.9 0 58 11.6 79.2 32.8C612.3 444 624 472.1 624 502c0 29.9-11.7 58-32.8 79.2z"
+                      p-id="8249" fill="#ffffff"></path>
+                  </svg>设置</a>
+              </li>
+              <!-- 快捷键_按钮 -->
+              <li class="nav-item">
+                <a class="nav-link" href="JavaScript:void(0)" onclick="shortcutKey()" style="font-weight: bold">
+                  <svg t="1615538348833" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8059" width="25" height="25">
+                    <path
+                      d="M193 796c0 17.7 14.3 32 32 32h574c17.7 0 32-14.3 32-32V563c0-176.2-142.8-319-319-319S193 386.8 193 563v233z m72-233c0-136.4 110.6-247 247-247s247 110.6 247 247v193H404V585c0-5.5-4.5-10-10-10h-44c-5.5 0-10 4.5-10 10v171h-75V563zM216.9 310.5l39.6-39.6c3.1-3.1 3.1-8.2 0-11.3l-67.9-67.9c-3.1-3.1-8.2-3.1-11.3 0l-39.6 39.6c-3.1 3.1-3.1 8.2 0 11.3l67.9 67.9c3.1 3.1 8.1 3.1 11.3 0zM886.5 231.3l-39.6-39.6c-3.1-3.1-8.2-3.1-11.3 0l-67.9 67.9c-3.1 3.1-3.1 8.2 0 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l67.9-67.9c3.1-3.2 3.1-8.2 0-11.3zM832 892H192c-17.7 0-32 14.3-32 32v24c0 4.4 3.6 8 8 8h688c4.4 0 8-3.6 8-8v-24c0-17.7-14.3-32-32-32zM484 180h56c4.4 0 8-3.6 8-8V76c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v96c0 4.4 3.6 8 8 8z"
+                      p-id="8060" fill="#ffffff"></path>
+                  </svg>快捷键</a>
+              </li>
+              <!-- 邀请_按钮 -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="JavaScript:void(0)" onclick="shortcutInv()" style="font-weight: bold">
+                  <svg t="1616659432767" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8049" width="25" height="25">
+                    <path
+                      d="M678.3 642.4c24.2-13 51.9-20.4 81.4-20.4h0.1c3 0 4.4-3.6 2.2-5.6-30.8-27.6-65.6-49.7-103.7-65.8-0.4-0.2-0.8-0.3-1.2-0.5C719.2 505 759.6 431.7 759.6 349c0-137-110.8-248-247.5-248S264.7 212 264.7 349c0 82.7 40.4 156 102.6 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.7 18.9-84.8 46-119.3 80.6-34.5 34.5-61.5 74.7-80.4 119.5C147.9 794.5 138 841 137 888.8c-0.1 4.5 3.5 8.2 8 8.2h59.9c4.3 0 7.9-3.5 8-7.8 2-77.2 32.9-149.5 87.6-204.3C357 628.2 432.2 597 512.2 597c56.7 0 111.1 15.7 158 45.1 2.5 1.5 5.5 1.7 8.1 0.3zM512.2 521c-45.8 0-88.9-17.9-121.4-50.4-32.4-32.5-50.3-75.7-50.3-121.6 0-45.9 17.9-89.1 50.3-121.6S466.3 177 512.2 177s88.9 17.9 121.4 50.4c32.4 32.5 50.3 75.7 50.3 121.6 0 45.9-17.9 89.1-50.3 121.6C601.1 503.1 558 521 512.2 521zM880 759h-84v-84c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v84h-84c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h84v84c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-84h84c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z"
+                      p-id="8050" fill="#ffffff"></path>
+                  </svg>邀请</a>
+              </li> -->
+            </ul>
+            <!-- 登陆注册/进入平台 -->
+            <div class="quote_btn-container">
+              <a href="{% url 'mycode' email %}">
+                <span>
+                  <svg t="1605257315848" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                    xmlns="http://www.w3.org/2000/svg" p-id="8058" width="35" height="35">
+                    <path
+                      d="M858.5 763.6c-18.9-44.8-46.1-85-80.6-119.5-34.5-34.5-74.7-61.6-119.5-80.6-0.4-0.2-0.8-0.3-1.2-0.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.8 18.9-85 46-119.5 80.6-34.5 34.5-61.6 74.7-80.6 119.5C146.9 807.5 137 854 136 901.8c-0.1 4.5 3.5 8.2 8 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c0.1 4.4 3.6 7.8 8 7.8h60c4.5 0 8.1-3.7 8-8.2-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"
+                      p-id="8059" fill="#ffffff"></path>
+                  </svg>
+                  {% if username|length > 8 %}
+                  {{ username|truncatechars:8}}...的代码
+                  {% else %}
+                  {{ username }}...的代码
+                  {% endif %}
+                </span>
+              </a>
+            </div>
+            <!-- 顶栏功能按钮-end -->
+        </nav>
+      </div>
+    </header>
+    <!-- ---------------------------------------------------------------------- -->
+    <!-- 顶栏-end -->
+    <!-- ---------------------------------------------------------------------- -->
+  </div>
+
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- 代码-start -->
+  <!-- ---------------------------------------------------------------------- -->
+  <div id="editordiv">
+    <!-- 编辑器 -->
+    <pre id="code-editor"></pre>
+    <!-- 运行结果 -->
+    <pre id="code-result"></pre>
+  </div>
+  <script src="{% static "assets/src-noconflict/ace.js" %}"></script>
+  <script src="{% static "assets/src-noconflict/ext-language_tools.js" %}"></script>
+  <p hidden name="codeFile_id">{{ codeFile_id }}</p>
+  <script>
+  </script>
+  <script>
+  </script>
+  <!-- 安装库-悬浮窗-start -->
+  <div id="windowLight" class="code_window_white_content" style="height: 280px">
+    <h3 class="code_window_h3"><svg t="1614321011390" class="icon" viewBox="0 0 1024 1024" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" p-id="8057" width="30" height="30">
+        <path
+          d="M888.3 757.4h-53.8c-4.2 0-7.7 3.5-7.7 7.7v61.8H197.1V197.1h629.8v61.8c0 4.2 3.5 7.7 7.7 7.7h53.8c4.2 0 7.7-3.4 7.7-7.7V158.7c0-17-13.7-30.7-30.7-30.7H158.7c-17 0-30.7 13.7-30.7 30.7v706.6c0 17 13.7 30.7 30.7 30.7h706.6c17 0 30.7-13.7 30.7-30.7V765.1c0-4.3-3.5-7.7-7.7-7.7z"
+          p-id="8058" fill="#00000"></path>
+        <path
+          d="M902 476H588v-76c0-6.7-7.8-10.5-13-6.3l-141.9 112c-4.1 3.2-4.1 9.4 0 12.6l141.9 112c5.3 4.2 13 0.4 13-6.3v-76h314c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z"
+          p-id="8059" fill="#00000"></path>
+      </svg>安装库</h3>
+    <div style="margin-bottom: 40px;">
+      <p class="code_window_p">安装库列表</p>
+      <input name="code_window_input" class="window_input" type="" placeholder="每个库名用 / 间隔" />
+    </div>
+    <button name="code_window_create_Button" class="code_window_create_Button">
+      安装
+    </button>
+    <button name="code_window_cancel_Button" class="code_window_cancel_Button">
+      取消
+    </button>
+  </div>
+  <div id="windowFade" class="code_window_black_overlay"></div>
+  <!-- 安装库-悬浮窗-end -->
+  <!-- 快捷键-悬浮窗-start -->
+  <div id="windowLight_key" class="key_window_white_content" style="height: 290px">
+    <h3 class="code_window_h3"><svg t="1615538348833" class="icon" viewBox="0 0 1024 1024" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" p-id="8059" width="30" height="30">
+        <path
+          d="M193 796c0 17.7 14.3 32 32 32h574c17.7 0 32-14.3 32-32V563c0-176.2-142.8-319-319-319S193 386.8 193 563v233z m72-233c0-136.4 110.6-247 247-247s247 110.6 247 247v193H404V585c0-5.5-4.5-10-10-10h-44c-5.5 0-10 4.5-10 10v171h-75V563zM216.9 310.5l39.6-39.6c3.1-3.1 3.1-8.2 0-11.3l-67.9-67.9c-3.1-3.1-8.2-3.1-11.3 0l-39.6 39.6c-3.1 3.1-3.1 8.2 0 11.3l67.9 67.9c3.1 3.1 8.1 3.1 11.3 0zM886.5 231.3l-39.6-39.6c-3.1-3.1-8.2-3.1-11.3 0l-67.9 67.9c-3.1 3.1-3.1 8.2 0 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l67.9-67.9c3.1-3.2 3.1-8.2 0-11.3zM832 892H192c-17.7 0-32 14.3-32 32v24c0 4.4 3.6 8 8 8h688c4.4 0 8-3.6 8-8v-24c0-17.7-14.3-32-32-32zM484 180h56c4.4 0 8-3.6 8-8V76c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v96c0 4.4 3.6 8 8 8z"
+          p-id="8060" fill="#020230"></path>
+      </svg>快捷键列表</h3>
+    <div style="margin-bottom: 40px;">
+      <div class="key_window_div">
+        <p class="key_window_p" style="text-align: center;width:100%">文件实时自动保存</p>
+        <!-- <p class="key_window_p">Ctrl + S</p> -->
+      </div>
+      <div class="key_window_div">
+        <p class="key_window_p">清空输出</p>
+        <p class="key_window_p">Ctrl + Q</p>
+      </div>
+    </div>
+    <button name="key_window_cancel_Button" class="key_window_cancel_Button">
+      关闭
+    </button>
+  </div>
+  <div id="windowFade_key" class="code_window_black_overlay"></div>
+  <!-- 快捷键-悬浮窗-end -->
+  <!-- 邀请-悬浮窗-start -->
+  <div id="windowLight_invite" class="key_window_white_content" style="height: 430px">
+    <h3 class="invite_window_h3"><svg t="1616659432767" class="icon" viewBox="0 0 1024 1024" version="1.1"
+        xmlns="http://www.w3.org/2000/svg" p-id="8049" width="30" height="30">
+        <path
+          d="M678.3 642.4c24.2-13 51.9-20.4 81.4-20.4h0.1c3 0 4.4-3.6 2.2-5.6-30.8-27.6-65.6-49.7-103.7-65.8-0.4-0.2-0.8-0.3-1.2-0.5C719.2 505 759.6 431.7 759.6 349c0-137-110.8-248-247.5-248S264.7 212 264.7 349c0 82.7 40.4 156 102.6 201.1-0.4 0.2-0.8 0.3-1.2 0.5-44.7 18.9-84.8 46-119.3 80.6-34.5 34.5-61.5 74.7-80.4 119.5C147.9 794.5 138 841 137 888.8c-0.1 4.5 3.5 8.2 8 8.2h59.9c4.3 0 7.9-3.5 8-7.8 2-77.2 32.9-149.5 87.6-204.3C357 628.2 432.2 597 512.2 597c56.7 0 111.1 15.7 158 45.1 2.5 1.5 5.5 1.7 8.1 0.3zM512.2 521c-45.8 0-88.9-17.9-121.4-50.4-32.4-32.5-50.3-75.7-50.3-121.6 0-45.9 17.9-89.1 50.3-121.6S466.3 177 512.2 177s88.9 17.9 121.4 50.4c32.4 32.5 50.3 75.7 50.3 121.6 0 45.9-17.9 89.1-50.3 121.6C601.1 503.1 558 521 512.2 521zM880 759h-84v-84c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v84h-84c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h84v84c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-84h84c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z"
+          p-id="8050" fill="#020230"></path>
+      </svg>邀请编辑</h3>
+    <div style="margin-bottom: 20px;">
+      <div style="margin-bottom: 10px;">
+        <p class="invite_window_p">公开分享</p>
+        <div class="slide-btn">
+          <div name="share_btn" class="inner-off" id="inner1" style="">
+            <input style="display:none;" type="checkbox" checked>
+            <span class="left">OFF</span><span class="space">&nbsp;</span><span class="right">ON</span>
+          </div>
+        </div>
+        <div hidden="true" name="share_url">http://www.jhc.cool/editor/{{ codeFile_id }}</div>
+        <!-- <button name="share_btn" class="invite_btn">
+          点击分享
+        </button> -->
+      </div>
+      <div style="margin-bottom: 10px;">
+        <p class="invite_window_p">公开编辑</p>
+        <div class="slide-btn">
+          <div class="inner-on" id="inner2" style="left:-51px">
+            <input style="display:none;" type="checkbox" checked>
+            <span class="left">ON</span><span class="space">&nbsp;</span><span class="right">ON</span>
+          </div>
+        </div>
+      </div>
+      <div style="margin-bottom: 10px;">
+        <p class="invite_window_p">邀请编辑</p>
+        <input name="invite_window_input" class="invite_window_input" placeholder="输邀请用户邮箱" type="email" />
+        <button name="invite_btn" class="invite_btn">
+          邀请
+        </button>
+      </div>
+      <div style="margin-bottom: 10px;margin-top:17px">
+        <p class="invite_window_p">代码参与者</p>
+        <div class="invite_window_details">
+          <details>
+            <summary>共xxx用户参与编辑</summary>
+            <ul>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+              <li>123</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </div>
+
+    <button name="invite_window_cancel_Button" class="invite_window_cancel_Button">
+      关闭
+    </button>
+  </div>
+  <div id="windowFade_invite" class="code_window_black_overlay"></div>
+  <!-- 邀请-悬浮窗-end -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- 代码-end -->
+  <!-- ---------------------------------------------------------------------- -->
+  <!-- js区-start -->
+  <script src="https://cdn.bootcss.com/popper.js/1.14.7/umd/popper.min.js"></script>
+  <!-- jquery -->
+  <!-- <script src="{% static "assets/js/jquery-3.4.1.min.js" %}"></script> -->
+  <!-- bootstrap js -->
+  <script src="{% static "assets/js/bootstrap.js" %}"></script>
+  <!-- 主要功能-js -->
+  <script src="{% static "assets/js/script.js" %}"></script>
+  <!-- 底栏媒体触摸变色-js -->
+  <script src="{% static "assets/js/touchmedia.js" %}"></script>
+  <!-- code-js -->
+  <script src="{% static "assets/js/code.js" %}"></script>
+  <!-- js区-end -->
+
+</body>
+
+</html>
