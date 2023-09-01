@@ -118,14 +118,14 @@ def driver_chat(url,username,password,browser,driver_path):
     driver = switch(driver)
     #sleep_time()
     
-    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[8]/a'
+    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[7]/a'
     driver = find_element(driver,chats)
     #sleep_time()
     driver = switch(driver)
     
-    assigning = '/html/body/div[2]/div/div[2]/div/div/div/div[3]/button'
+    '''assigning = '/html/body/div[2]/div/div[2]/div/div/div/div[3]/button'
     driver = find_element(driver,assigning)
-    '''/html/body/div[2]/div/div[1]/div/div[2]/nav/div[1]/a
+    /html/body/div[2]/div/div[1]/div/div[2]/nav/div[1]/a
     basic = '/html/body/div[2]/div/div[1]/div[1]/div[2]/nav/div[3]/div[2]/div[2]/a'
     driver = find_element(driver,basic)'''
     return driver
@@ -640,6 +640,7 @@ def main1():
     group_detial_file = create_file(group_detial_path)
     group_relation_file = create_file(group_relation_path)
     group_info_file = create_file(group_info_path)
+    time.sleep(5)
     while(1):
         try:
             group_user_number = driver.find_elements_by_css_selector('a[class="d-flex w-100 justify-content-center"]')
