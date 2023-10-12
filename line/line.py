@@ -62,12 +62,12 @@ def find_element(driver,xpath):
     while (1):
         try:
             element = driver.find_element_by_xpath(xpath)
-            
+            #print(element)
             break
         except Exception:
             continue
     element.click()
-        
+      
     return driver
 
 
@@ -93,9 +93,10 @@ def quit(driver):
 def driver_chat(url,username,password,browser,driver_path):
     driver = load_driver(url,browser,driver_path)
     #link = '/html/body/div/div[1]/main/div/div/div[1]/div/div/div/div[2]/div[2]/div/a[1]'   #这是之前的xpath，但是后面官方修改了界面，变成了下面这个链接
-    link = '/html/body/div/div[1]/div[1]/div[3]/div/div[2]/a'
+    link = '/html/body/div[1]/div[1]/div[1]/div[3]/div/div[2]/a'
     driver = find_element(driver,link)
     #sleep_time()
+    
     login1 = '/html/body/div[2]/div/div[3]/div/form/div/input'
     driver = find_element(driver,login1)
     #sleep_time()
