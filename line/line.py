@@ -27,6 +27,7 @@ def load_driver(url,browser,path):
         driver = webdriver.Edge(executable_path=path)
     #driver.minimize_window()  # 最小化界面
     # 发起请求
+    print(browser)
     driver.get(url)
     return driver
 
@@ -124,9 +125,9 @@ def driver_chat(url,username,password,browser,driver_path):
     #sleep_time()
     driver = switch(driver)
     
-    '''assigning = '/html/body/div[2]/div/div[2]/div/div/div/div[3]/button'
+    assigning = '/html/body/div[2]/div/div[2]/div/div/div/div[3]/button'
     driver = find_element(driver,assigning)
-    /html/body/div[2]/div/div[1]/div/div[2]/nav/div[1]/a
+    '''/html/body/div[2]/div/div[1]/div/div[2]/nav/div[1]/a
     basic = '/html/body/div[2]/div/div[1]/div[1]/div[2]/nav/div[3]/div[2]/div[2]/a'
     driver = find_element(driver,basic)'''
     return driver
