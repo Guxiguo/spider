@@ -281,7 +281,7 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,t
                     path = parsed_url.path
                     filename = os.path.basename(path)
                     base = os.path.splitext(filename)[0]
-                    print(base)
+                    #print(base)
                     image_info['name'] = base
                     '''timestamp = str(int(time.time()))
                     filename1 = 'line/image/'+timestamp+'.mp4'
@@ -834,13 +834,15 @@ def main1():
                 is_group,group_name,group_user_number =  group_user_number_tag(driver,group_user_number_tag_value)
                 #sleep_time()
                 div_list = get_div(driver,url1)
-                print(len(div_list))
+                #print(len(div_list))
                 Massage_id,user_detial_id,user_relation_id,user_all_list,relation_all_list,group_list,flag,message_count,start_time, information_list,group_relation_list,group_detail_list,user_detail_list = read_div(div_list,group_number,is_group,group_name,group_user_number,i,url1,Massage_id,member_list,user_detail_file,group_detial_file,group_relation_file,group_info_file,user_detial_id,user_relation_id,user_all_list,relation_all_list,group_list,flag,types,time2,number,start_time,information_path,message_count,information_list,group_relation_list,group_detail_list,user_detail_list,timestamp)
                 information_list1.append(information_list)
                 group_relation_list1.append(group_relation_list)
                 user_detail_list1.append(user_detail_list)
                 group_detail_list1.append(group_detail_list)
                 #print(group_detail_list1)
+
+                #将采集到的内容存储到json文件中
                 json.dump(information_list1,group_info_file,ensure_ascii=False)
                 json.dump(group_relation_list1,group_relation_file,ensure_ascii=False)
                 json.dump(group_detail_list1,group_detial_file,ensure_ascii=False)
