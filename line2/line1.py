@@ -194,14 +194,6 @@ def get_div(driver,url):
             break
 
         initial_scroll_position = new_scroll_position
-    '''element = driver.find_element_by_xpath(scroll)
-    time.sleep(5)
-    # 使用JavaScript代码来滚动元素到顶部
-    driver.execute_script("arguments[0].scrollTop = 0", element)
-    element = driver.find_element_by_xpath(scroll)
-    # 使用JavaScript代码来滚动元素到顶部
-    driver.execute_script("arguments[0].scrollTop = 0", element)
-    #sleep_time()'''
     sleep_time()
     while(1):
         try:
@@ -265,7 +257,7 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                 
                 str1111 = str1111 +'/'+ content.get_attribute('textContent').strip()
             content_list.append(str1111)
-           
+    #解析图片信息和视频信息       
     if content_img != []:
         for content in content_img:
             class_img = content.get_attribute('class')
@@ -361,7 +353,7 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                     image_info.append('length: '+ str(file_size))
                     image_info.append('download_datetime: '+ str(datetime.now().replace(microsecond=0)))
     
-    
+    #解析语音信息
     if voices != []:
         for voice in voices:
             #content_list.append([{'voice path':filename1},{'voice time':voice.text.strip()},{'length':file_size}])
@@ -1024,45 +1016,34 @@ def alter_state(information_path,state):
 def main1():
     start_time = datetime.now().replace(microsecond=0)
     url = 'https://developers.line.biz/en/'
-    
     username = sys.argv[1]
     password = sys.argv[2]
-    
     types = sys.argv[3]
     time2 = sys.argv[4]
     number = sys.argv[5]
     #print(number)
     group_id = sys.argv[6]
     save_path = sys.argv[7]
-    
     browser = sys.argv[8]
-    
     driver_path = sys.argv[9]
     serviceid = sys.argv[10]
-
     online = sys.argv[11]
-    
-    
     user_detial_id = 0
     user_relation_id =0
     flag = {}
     user_all_list = []
     relation_all_list = []
     group_list = []
-    
     div_count = 0
     message_count = 0
     div_count1 = 0
-    
     driver = driver_chat(url,username,password,browser,driver_path)
     information_path = save_path+'state.json'
-    
     #group_number = config['group_number']
     Massage_id = 0
     #time_record = []
     div_flag = False
     last_message_count = 0
-    
     time.sleep(5)
     while(1):
         try:
