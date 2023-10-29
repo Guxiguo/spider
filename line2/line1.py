@@ -130,8 +130,8 @@ def driver_chat(url,username,password,browser,driver_path):
     
     driver = switch(driver)
     #sleep_time()
-    
-    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[7]/a'
+    #/html/body/div/div[1]/nav/div/ul[1]/li[8]/a
+    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[8]/a'
     driver = find_element(driver,chats)
     #sleep_time()
     driver = switch(driver)
@@ -194,6 +194,14 @@ def get_div(driver,url):
             break
 
         initial_scroll_position = new_scroll_position
+    '''element = driver.find_element_by_xpath(scroll)
+    time.sleep(5)
+    # 使用JavaScript代码来滚动元素到顶部
+    driver.execute_script("arguments[0].scrollTop = 0", element)
+    element = driver.find_element_by_xpath(scroll)
+    # 使用JavaScript代码来滚动元素到顶部
+    driver.execute_script("arguments[0].scrollTop = 0", element)
+    #sleep_time()'''
     sleep_time()
     while(1):
         try:
@@ -257,22 +265,23 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                 
                 str1111 = str1111 +'/'+ content.get_attribute('textContent').strip()
             content_list.append(str1111)
-    #解析图片信息和视频信息       
+           
     if content_img != []:
         for content in content_img:
             class_img = content.get_attribute('class')
             if class_img == 'chat-item-sticker' or class_img == 'sticon emojione':
+                image_info1={}
                 #content_list.append({'image url':content.get_attribute('src')})
                 url = content.get_attribute('src')
                 if(url[-3:] in ['png','jpg']):
-                    image_info.append('type: '+ url[-3:])
-                    image_info.append('url: '+url)
+                    image_info1['type']= url[-3:]
+                    image_info1['url']=url
                     
                     parsed_url = urlparse(url)
                     path = parsed_url.path
                     filename = os.path.basename(path)
                     base = os.path.splitext(filename)[0]
-                    image_info.append('name: '+base)
+                    image_info1['name']=base
                     timestamp = str(int(time.time()))
                     filename1 = save_path+'image/'+timestamp+'.'+ url[-3:]
                     try:
@@ -281,18 +290,20 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                         image_size=0
                         filename1 = ''
                         print(e)
-                    image_info.append('path: '+filename1)
-                    image_info.append('length: '+str(int(image_size)))
-                    image_info.append('download_datetime: '+str(datetime.now().replace(microsecond=0)))
+                    image_info1['path']=filename1
+                    image_info1['length']=str(int(image_size))
+                    image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
+                    image_info.append(image_info1)
                 else:
-                    image_info.append('type: ' +'mp4')
-                    image_info.append('url: '+url)
+                    image_info1={}
+                    image_info1['type']='mp4'
+                    image_info1['url']=url
                     
                     parsed_url = urlparse(url)
                     path = parsed_url.path
                     filename = os.path.basename(path)
                     base = os.path.splitext(filename)[0]
-                    image_info.append('name: '+ base)
+                    image_info1['name']= base
                     #print(base)
                     '''timestamp = str(int(time.time()))
                     filename1 = 'line/image/'+timestamp+'.mp4'
@@ -303,22 +314,24 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                     # 如果目标文件已经存在，删除它
                     if os.path.exists(target_file_path)==False:
                         filename1 = shutil.move(filename1,filename111)
-                    image_info.append('path: '+ filename1)
-                    image_info.append('length: '+str(file_size))
-                    image_info.append('download_datetime: '+ str(datetime.now().replace(microsecond=0)))
+                    image_info1['path']=filename1
+                    image_info1['length']=str(file_size)
+                    image_info1['download_datetime']= str(datetime.now().replace(microsecond=0))
+                    image_info.append(image_info1)
     
             else:
+                image_info1={}
                 url = content.get_attribute('src')
                 if(url[-3:] in ['png','jpg']):
                     
                     url = content.get_attribute('src')
-                    image_info.append('type: '+ url[-3:])
-                    image_info.append('url: '+ url)
+                    image_info1['type']= url[-3:]
+                    image_info1['url']= url
                     parsed_url = urlparse(url)
                     path = parsed_url.path
                     filename1 = os.path.basename(path)
                     base = os.path.splitext(filename1)[0]
-                    image_info.append('name: '+ base)
+                    image_info1['name']= base
                     timestamp = str(int(time.time()))
                     filename1 = save_path+'image/'+timestamp+'.'+ url[-3:]
                     try:
@@ -327,19 +340,21 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                         image_size=0
                         filename1 = ''
                         print(e)
-                    image_info.append('path: '+ filename1)
-                    image_info.append('length: '+str(int(image_size)))
-                    image_info.append('download_datetime: '+ str(datetime.now().replace(microsecond=0)))
+                    image_info1['path']= filename1
+                    image_info1['length']=str(int(image_size))
+                    image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
+                    image_info.append(image_info1)
                 else:
-                    image_info.append('type: '+ 'mp4')
-                    image_info.append('url: '+ url)
+                    image_info1={}
+                    image_info1['type'] ='mp4'
+                    image_info1['url']= url
                     
                     parsed_url = urlparse(url)
                     path = parsed_url.path
                     filename = os.path.basename(path)
                     base = os.path.splitext(filename)[0]
                     #print(base)
-                    image_info.append('name: '+ base)
+                    image_info1['name']= base
                     '''timestamp = str(int(time.time()))
                     filename1 = 'line/image/'+timestamp+'.mp4'
 
@@ -349,25 +364,26 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                     # 如果目标文件已经存在，删除它
                     if os.path.exists(target_file_path)==False:
                         filename1 = shutil.move(filename1,filename111)
-                    image_info.append('path: '+ filename1)
-                    image_info.append('length: '+ str(file_size))
-                    image_info.append('download_datetime: '+ str(datetime.now().replace(microsecond=0)))
+                    image_info1['path']= filename1
+                    image_info1['length']= str(file_size)
+                    image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
+                    image_info.append(image_info1)
     
-    #解析语音信息
     if voices != []:
         for voice in voices:
+            voice_info1={}
             #content_list.append([{'voice path':filename1},{'voice time':voice.text.strip()},{'length':file_size}])
-            voice_info.append('type: '+ 'm4a')
+            voice_info1['type']='m4a'
             target_file_path = os.path.join(filename111, os.path.basename(filename1))
 
             # 如果目标文件已经存在，删除它
             if os.path.exists(target_file_path)==False:
                 filename1 = shutil.move(filename1,filename111)
-            voice_info.append('path: '+ filename1)
-            voice_info.append('time: '+ voice.text.strip())
-            voice_info.append('length: '+ str(file_size))
-            voice_info.append('download_datetime: '+ str(datetime.now().replace(microsecond=0)))
-             
+            voice_info1['path']=filename1
+            voice_info1['time']=voice.text.strip()
+            voice_info1['length']= str(file_size)
+            voice_info1['download_datetime']= str(datetime.now().replace(microsecond=0))
+            voice_info.append(voice_info1)
 
     return content_list, image_info, voice_info
 
@@ -474,7 +490,7 @@ def group_info(content_list,date,Massage_id,group_number,sender_type,true_time,d
         messages['sender_type'] = sender_type
         if(bool(content_list)):
             
-            messages['content'] = content_list
+            messages['content'] = content_list[0]
         if (bool(image_info)):
             if(image_info[0]=='type: mp4'):
                 messages['video_info'] = list(image_info)
@@ -512,7 +528,8 @@ def group_info(content_list,date,Massage_id,group_number,sender_type,true_time,d
             messages['sender_type'] = sender_type
             if(bool(content_list)):
                 #messages['content'] = content_list[data_id_list.index(data)]
-                messages['content'] = content_list
+                #print(content_list)
+                messages['content'] = content_list[0]
             if (bool(image_info)):
                 if(image_info[0]=='type: mp4'):
                     messages['video_info'] = image_info
@@ -968,28 +985,43 @@ def judeg(types,time2,number,start_time,message_id,information_path,message_coun
             if os.path.exists(save_path+'user') ==False:
                 os.makedirs(save_path+'user')
             
-            group_detial_path = save_path+'group/'+group_id+'_'+timestamp+'_group.json'
-            group_relation_path = save_path+'relation/'+group_id+'_'+timestamp+'_relation.json'
-            group_info_path = save_path+'group_info/'+group_id+'_'+timestamp+'_info.json'
-            user_detail_path = save_path+'user/'+group_id+'_'+timestamp+'_user.json'
-            
-            user_detail_file = create_file(user_detail_path)
+            group_detial_path = save_path+'group/'+group_id+'_'+timestamp+'_group.temp'
+            group_relation_path = save_path+'relation/'+group_id+'_'+timestamp+'_relation.temp'
+            group_info_path = save_path+'group_info/'+group_id+'_'+timestamp+'_info.temp'
+            user_detail_path = save_path+'user/'+group_id+'_'+timestamp+'_user.temp'
+            group_detial_path1 = save_path+'group/'+group_id+'_'+timestamp+'_group.json'
+            group_relation_path1 = save_path+'relation/'+group_id+'_'+timestamp+'_relation.json'
+            group_info_path1 = save_path+'group_info/'+group_id+'_'+timestamp+'_info.json'
+            user_detail_path1 = save_path+'user/'+group_id+'_'+timestamp+'_user.json'
+            with open(group_info_path,'w') as f1:
+                f1.write(information_list)
+                f1.close()
+            #saveFile = open(f'{messages_folder_path}/messages_{round}.jsons', 'w', encoding='utf-8')
+            '''user_detail_file = create_file(user_detail_path)
             group_detial_file = create_file(group_detial_path)
             group_relation_file = create_file(group_relation_path)
             group_info_file = create_file(group_info_path)
-            json.dump(information_list,group_info_file,ensure_ascii=False)
+            saveFile.write(json.dump(information_list,group_info_file,ensure_ascii=False))
             json.dump(group_relation_list,group_relation_file,ensure_ascii=False)
             json.dump(group_detail_list,group_detial_file,ensure_ascii=False)
-            json.dump(user_detail_list,user_detail_file,ensure_ascii=False)
-            
+            json.dump(user_detail_list,user_detail_file,ensure_ascii=False)'''
+            with open(group_relation_path,'w') as f2:
+                f2.write(group_relation_list)
+                f2.close()
+            with open(group_detial_path,'w') as f3:
+                f3.write(group_detail_list)
+                f3.close()
+            with open(user_detail_path,'w') as f4:
+                f4.write(user_detail_list)
+                f4.close()
             information_list = []
             group_relation_list = []
             group_detail_list = []
             user_detail_list = []
-            close_file(user_detail_file)
+            '''close_file(user_detail_file)
             close_file(group_detial_file)
             close_file(group_relation_file)
-            close_file(group_info_file)
+            close_file(group_info_file)'''
             state = 'sleep'
             alter_state(information_path,state)
             #print(state)
@@ -997,6 +1029,10 @@ def judeg(types,time2,number,start_time,message_id,information_path,message_coun
             time.sleep(int(number))
             state = 'run'
             alter_state(information_path,state)
+            os.rename(group_detial_path,group_detial_path1)
+            os.rename(group_relation_path,group_relation_path1)
+            os.rename(group_info_path,group_info_path1)
+            os.rename(user_detail_path,user_detail_path1)
     #print(message_count,(end_time-start_time).total_seconds())
     return message_count,start_time,information_list,group_relation_list,group_detail_list,user_detail_list
     
@@ -1016,34 +1052,45 @@ def alter_state(information_path,state):
 def main1():
     start_time = datetime.now().replace(microsecond=0)
     url = 'https://developers.line.biz/en/'
+    
     username = sys.argv[1]
     password = sys.argv[2]
+    
     types = sys.argv[3]
     time2 = sys.argv[4]
     number = sys.argv[5]
     #print(number)
     group_id = sys.argv[6]
     save_path = sys.argv[7]
+    
     browser = sys.argv[8]
+    
     driver_path = sys.argv[9]
     serviceid = sys.argv[10]
+
     online = sys.argv[11]
+    
+    
     user_detial_id = 0
     user_relation_id =0
     flag = {}
     user_all_list = []
     relation_all_list = []
     group_list = []
+    
     div_count = 0
     message_count = 0
     div_count1 = 0
+    
     driver = driver_chat(url,username,password,browser,driver_path)
     information_path = save_path+'state.json'
+    
     #group_number = config['group_number']
     Massage_id = 0
     #time_record = []
     div_flag = False
     last_message_count = 0
+    
     time.sleep(5)
     while(1):
         try:
