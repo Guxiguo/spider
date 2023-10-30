@@ -391,6 +391,7 @@ def user_detail(member_list,user_detial_id,user_all_list,user_detail_list,servic
     for member in member_list:
         user_detail = {}
         user_detail['serviceid'] = serviceid
+        user_detail['md5'] = getmd5(str(user_detial_id)+member)
         
         user_detail['user_name'] = member
         #user_all_list.append(member) 
@@ -413,6 +414,7 @@ def user_detail(member_list,user_detial_id,user_all_list,user_detail_list,servic
 def group_detail(i,group_number,group_name,group_user_number,url,group_detail_list,serviceid):
     group_detail = {}
     group_detail['serviceid'] =serviceid
+    group_detail['md5'] = getmd5(group_number)
     group_detail['auto_id'] = i
     group_detail['group_id']= group_number
     group_detail['group_name']= group_name
