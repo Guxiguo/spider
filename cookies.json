@@ -1,0 +1,98 @@
+[
+    {
+        "domain": ".developers.line.biz",
+        "httpOnly": false,
+        "name": "_trmcpage",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": true,
+        "value": "/console/provider/1660976479"
+    },
+    {
+        "domain": ".developers.line.biz",
+        "expiry": 1701419873,
+        "httpOnly": false,
+        "name": "_trmcuser",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": true,
+        "value": "{\"id\":\"\"}"
+    },
+    {
+        "domain": ".line.biz",
+        "httpOnly": false,
+        "name": "__try__",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "1698827867795"
+    },
+    {
+        "domain": ".developers.line.biz",
+        "expiry": 1698829673,
+        "httpOnly": false,
+        "name": "_trmcsession",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": true,
+        "value": "{\"id\":\"98f519f0e437da10\",\"path\":\"/console/\",\"query\":\"?status=success\",\"params\":{},\"time\":1698827868277}"
+    },
+    {
+        "domain": ".line.biz",
+        "expiry": 1733387803,
+        "httpOnly": false,
+        "name": "_ga_K94RFW73WS",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "GS1.1.1698827803.1.0.1698827803.0.0.0"
+    },
+    {
+        "domain": "developers.line.biz",
+        "expiry": 1733387861,
+        "httpOnly": false,
+        "name": "displayLanguageLocale",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "en"
+    },
+    {
+        "domain": ".line.biz",
+        "httpOnly": true,
+        "name": "ses",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": true,
+        "value": "q4pWIIDsGvMvPsKLlX8hqdA6Qi6TD4mb6IzNBw9anfjWaSPBmhxKrIchbYkSZMRMf"
+    },
+    {
+        "domain": ".developers.line.biz",
+        "httpOnly": false,
+        "name": "_trmcdisabled2",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": true,
+        "value": "-1"
+    },
+    {
+        "domain": ".line.biz",
+        "expiry": 1730363867,
+        "httpOnly": false,
+        "name": "_trmccid",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "90c11c6d9b3ebef3"
+    },
+    {
+        "domain": ".line.biz",
+        "expiry": 1733387803,
+        "httpOnly": false,
+        "name": "_ga",
+        "path": "/",
+        "sameSite": "Lax",
+        "secure": false,
+        "value": "GA1.1.1552214928.1698827803"
+    }
+]

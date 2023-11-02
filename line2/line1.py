@@ -26,9 +26,11 @@ def load_driver(url,browser,path):
     
     # Chrome驱动加载
     if browser == 'chrome':
+
         driver = webdriver.Chrome(executable_path=path)
     # Edge驱动加载
     elif browser == 'edge':
+        
         driver = webdriver.Edge(executable_path=path)
     driver.maximize_window()  # 最小化界面
     # 发起请求
@@ -40,6 +42,7 @@ def load_driver(url,browser,path):
 模拟登录
 '''
 def login(driver,username_xpath,password_xpath,button_xpath,username,password):
+    
     username_field = driver.find_element_by_xpath(username_xpath)
     password_field = driver.find_element_by_xpath(password_xpath)
     # 输入用户名和密码
@@ -57,6 +60,7 @@ def login(driver,username_xpath,password_xpath,button_xpath,username,password):
         except Exception:
             continue
     #time.sleep(15)
+    
     return driver
 
 
@@ -104,24 +108,40 @@ def quit(driver):
 '''
 def driver_chat(url,username,password,browser,driver_path):
     driver = load_driver(url,browser,driver_path)
+    path = password+'.json'
     #link = '/html/body/div/div[1]/main/div/div/div[1]/div/div/div/div[2]/div[2]/div/a[1]'   #这是之前的xpath，但是后面官方修改了界面，变成了下面这个链接
+    
+    if(os.path.exists(path)==True):
+        with open(path, "r") as file:
+            cookies = json.load(file)
+        for cook in cookies:
+            driver.add_cookie(cook)
+        file.close()
+       
+       
+    
+    #sleep_time()
     link = '/html/body/div[1]/div[1]/div[1]/div[3]/div/div[2]/a'
     driver = find_element(driver,link)
-    #sleep_time()
-    
-    login1 = '/html/body/div[2]/div/div[3]/div/form/div/input'
-    driver = find_element(driver,login1)
-    #sleep_time()
-    username_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[1]/input'
-    password_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[2]/input'
-    button_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[3]/button'
-    driver = login(driver,username_xpath,password_xpath,button_xpath,username,password)
-    driver = switch(driver)
+    if(os.path.exists(path)==False):
+        login1 = '/html/body/div[2]/div/div[3]/div/form/div/input'
+        driver = find_element(driver,login1)
+        
+        username_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[1]/input'
+        password_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[2]/input'
+        button_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[3]/button'
+        driver = login(driver,username_xpath,password_xpath,button_xpath,username,password)
+        driver = switch(driver)
     message = '/html/body/div[1]/div/div/section/div/ul/li[2]/a/div'
     #message = '/html/body/div/div/div/aside/div/div/div/section/div[2]/div/ul/li/a'
     #sleep_time()
     driver = find_element(driver,message)
-    #sleep_time()
+    cookies = driver.get_cookies()
+        
+    file =  open(path, "w",encoding='utf-8')
+    json.dump(cookies, file, ensure_ascii=False)
+    file.close()
+        #sleep_time()
     user = '/html/body/div/div/div/section/div/div/section/div/div[2]/a/a/article/section'
     driver = find_element(driver,user)
     #sleep_time()
