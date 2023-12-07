@@ -13,8 +13,7 @@ from msedge.selenium_tools import Edge,EdgeOptions
 import psutil
 import signal
 import uuid
-import zipfile
-import base64
+
 
 
 script_id = str(uuid.uuid4())
@@ -61,59 +60,6 @@ def load_driver(url,browser,path):
     driver.get(url)
     return driver
 
-'''采集数据传输'''
-def data_send(data,serviceid,info_type):
-    source_flag = "TRS"  # 来源标识
-    data_pack_type = "file"  # 数据包类型
-    data_pack_subject = info_type  # 数据包主题
-    data_encoding = "utf-8"  # 数据编码
-    compress_file_type = "zip"  # 压缩文件类型
-    encrypt_id = "0"  # 加密编号
-    timestamp =  str(int(time.time())) # 时间戳
-    body = [
-        data,
-        "",
-        serviceid,
-        source_flag,
-        data_pack_type,
-        data_pack_subject,
-        data_encoding,
-        compress_file_type,
-        encrypt_id,
-        timestamp
-]
-    '''body = data
-    sted_data = []
-    #data_md5 = getmd5(data)
-    sted_data.append(data)
-    sted_data.append('')
-    sted_data.append(serviceid)
-    sted_data.append('TRS')
-    sted_data.append('json')
-    sted_data.append(info_type)
-    sted_data.append('utf-8')
-    sted_data.append('')
-    sted_data.append(0)
-    sted_data.append(str(int(time.time())))'''
-    # 将数据转化为JSON格式
-    
-    sign_str = source_flag + ":" + data_pack_type + data_pack_subject + timestamp + json.dumps(body)
-    md5 = hashlib.md5()
-    md5.update(sign_str.encode('utf-8'))
-    sign = md5.hexdigest()
-
-    # 构造headers
-    headers = {
-        "Content-type": "application/json; charset=utf-8",
-        "sign": sign
-    }
-
-    # 发送POST请求
-    response = requests.post("http://xxx:8080/api/v1/data", headers=headers, data=json.dumps(body))
-
-    # 打印响应
-    print(response.json())
-
 '''
 模拟登录
 '''
@@ -128,13 +74,13 @@ def login(driver,username_xpath,password_xpath,button_xpath,username,password):
     button = driver.find_element_by_xpath(button_xpath)
     button.click()
    
-    '''while (1):
+    while (1):
         try:
             check = driver.find_element_by_css_selector('p[class="mdMN06Number"]')
             print("验证码为：",format(check.text))
             break
         except Exception:
-            continue'''
+            continue
     #time.sleep(15)
     
     return driver
@@ -144,13 +90,11 @@ def login(driver,username_xpath,password_xpath,button_xpath,username,password):
 根据xpath跳转到对应界面
 '''
 def find_element(driver,xpath):
-    time.sleep(2)
+    #time.sleep(2)
     while (1):
         try:
             element = driver.find_element_by_xpath(xpath)
-            if(element==None):
-                continue
-            #print(element)
+            print(element)
             #print(xpath)
             break
         except Exception:
@@ -189,27 +133,37 @@ def driver_chat(url,username,password,browser,driver_path):
     driver = load_driver(url,browser,driver_path)
     path = password+'.json'
     #link = '/html/body/div/div[1]/main/div/div/div[1]/div/div/div/div[2]/div[2]/div/a[1]'   #这是之前的xpath，但是后面官方修改了界面，变成了下面这个链接
+    #这个是用来·保存cookies的
+    '''if(os.path.exists(path)==True):
+        with open(path, "r") as file:
+            cookies = json.load(file)
+        for cook in cookies:
+            driver.add_cookie(cook)
+        file.close()'''
+       
+       
+    
+    #sleep_time()
     link = '/html/body/div[1]/div[1]/div[1]/div[3]/div/div[2]/a'
     driver = find_element(driver,link)
     #判断cookies文件是否存在
     #if(os.path.exists(path)==False):
-    #print('111')
-    login1 = '/html/body/div[2]/div/div[3]/div/form/div/input'
-    driver = find_element(driver,login1)
+    print('111')
+    #login1 = '/html/body/div[2]/div/div[3]/div/form/div/input'
+    #driver = find_element(driver,login1)
     #用来登录
-    ''' username_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[1]/input'
+    '''username_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[1]/input'
     password_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[2]/input'
     button_xpath = '/html/body/div/div/div/div/div/div[2]/div/form/fieldset/div[3]/button'
-    driver = login(driver,username_xpath,password_xpath,button_xpath,username,password)'''
-    #driver = switch(driver)
+    driver = login(driver,username_xpath,password_xpath,button_xpath,username,password)
+    driver = switch(driver)'''
     
     #现在已经读取到本地文件，可以直接登录不需要验证
-    login = '/html/body/div/div/div/div/div/div/div/div[2]/div/div[3]/button'
-    driver = find_element(driver,login)
+    #login = '/html/body/div/div/div/div/div/div/div/div[2]/div/div[3]/button'
+    #driver = find_element(driver,login)
     
-    #print('222')
-    
-    message = '/html/body/div/div/div/aside/div/div/div/section/div[2]/div/ul/li/a'
+    print('222')
+    message = '/html/body/div[1]/div/div/section/div/ul/li[2]/a/div'
     #message = '/html/body/div/div/div/section/div/div[1]/div/div/div/a/a'
     #message = '/html/body/div/div/div/aside/div/div/div/section/div[2]/div/ul/li/a'
     #sleep_time()
@@ -219,7 +173,7 @@ def driver_chat(url,username,password,browser,driver_path):
     file =  open(path, "w",encoding='utf-8')
     json.dump(cookies, file, ensure_ascii=False)
     file.close()
-    #sleep_time()
+        #sleep_time()
     user = '/html/body/div/div/div/section/div/div/section/div/div[2]/a/a/article/section'
     driver = find_element(driver,user)
     #sleep_time()
@@ -228,8 +182,8 @@ def driver_chat(url,username,password,browser,driver_path):
     
     driver = switch(driver)
     #sleep_time()
-    time.sleep(2)
-    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[7]/a'
+    #/html/body/div/div[1]/nav/div/ul[1]/li[8]/a
+    chats = '/html/body/div/div[1]/nav/div/ul[1]/li[8]/a'
     driver = find_element(driver,chats)
     #sleep_time()
     driver = switch(driver)
@@ -241,59 +195,6 @@ def driver_chat(url,username,password,browser,driver_path):
     driver = find_element(driver,basic)'''
     return driver
 
-
-def send_photo(path,serviceid):
- 
-    source_flag = "TRS"  # 来源标识
-    data_pack_type = "file"  # 数据包类型
-    data_pack_subject = path  # 数据包主题
-    data_encoding = "utf-8"  # 数据编码
-    compress_file_type = "zip"  # 压缩文件类型
-    encrypt_id = "0"  # 加密编号
-    timestamp =  str(int(time.time())) # 时间戳
-
-    # 读取文件内容
-    with open(path, "rb") as file:
-        file_content = file.read()
-
-    # 将文件内容转换为Base64编码的字符串
-    file_content_base64 = base64.b64encode(file_content).decode()
-
-
-    # 构造body
-    body = [
-        file_content_base64, 
-        '',
-        serviceid,
-        source_flag,
-        data_pack_type,
-        data_pack_subject,
-        data_encoding,
-        compress_file_type,
-        encrypt_id,
-        timestamp
-    ]
-
-    # 构造签名
-    sign_str = source_flag + ":" + data_pack_type + data_pack_subject + timestamp + json.dumps(body)
-    md5 = hashlib.md5()
-    md5.update(sign_str.encode('utf-8'))
-    sign = md5.hexdigest()
-
-    # 构造headers
-    headers = {
-        "Content-type": "application/json; charset=utf-8",
-        "sign": sign
-    }
-
-    # 发送POST请求
-    response = requests.post("http://xxx:8080/api/v1/data", headers=headers, data=json.dumps(body))
-
-    # 检查响应
-    if response.status_code == 200:
-        print("Request was successful")
-    else:
-        print("Request failed with status code", response.status_code)
 '''
 获取每个群聊的url地址
 '''
@@ -370,26 +271,6 @@ def create_file(path):
     return file
 
 
-
-'''
-压缩图片
-'''
-def zip_file(path):
-    # 确保文件存在
-    if not os.path.isfile(path):
-        print('File does not exist.')
-        return
-
-    # 获取文件的名称和目录
-    dir_name = os.path.dirname(path)
-    file_name = os.path.basename(path)
-
-    # 在文件所在目录创建zip文件
-    os.chdir(dir_name)
-
-    with zipfile.ZipFile(file_name + '.zip', 'w', zipfile.ZIP_DEFLATED) as zipf:
-        zipf.write(file_name)
-
 '''
 用户类型判断
 '''
@@ -461,7 +342,6 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                         image_size=0
                         filename1 = ''
                         print(e)
-                    zip_file(filename1)
                     image_info1['path']=filename1
                     image_info1['length']=str(int(image_size))
                     image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
@@ -486,7 +366,6 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                     # 如果目标文件已经存在，删除它
                     if os.path.exists(target_file_path)==False:
                         filename1 = shutil.move(filename1,filename111)
-                    zip_file(filename1)
                     image_info1['path']=filename1
                     image_info1['length']=str(file_size)
                     image_info1['download_datetime']= str(datetime.now().replace(microsecond=0))
@@ -513,7 +392,6 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                         image_size=0
                         filename1 = ''
                         print(e)
-                    zip_file(filename1)
                     image_info1['path']= filename1
                     image_info1['length']=str(int(image_size))
                     image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
@@ -538,7 +416,6 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
                     # 如果目标文件已经存在，删除它
                     if os.path.exists(target_file_path)==False:
                         filename1 = shutil.move(filename1,filename111)
-                    zip_file(filename1)
                     image_info1['path']= filename1
                     image_info1['length']= str(file_size)
                     image_info1['download_datetime']=str(datetime.now().replace(microsecond=0))
@@ -550,7 +427,7 @@ def get_text_img_voice(content_text_div,content_img,voices,filename1,file_size,s
             #content_list.append([{'voice path':filename1},{'voice time':voice.text.strip()},{'length':file_size}])
             voice_info1['type']='m4a'
             target_file_path = os.path.join(filename111, os.path.basename(filename1))
-            zip_file(filename1)
+
             # 如果目标文件已经存在，删除它
             if os.path.exists(target_file_path)==False:
                 filename1 = shutil.move(filename1,filename111)
@@ -876,7 +753,6 @@ def read_div(div_list,group_number,group_name,group_user_number,i,url,Massage_id
                         voices = content_main.find_elements_by_css_selector('div[class="chat-item-voice-text"]')
                         # 发送消息的具体时间
                         time = content_main.find_elements_by_css_selector('div[class="chat-sub"]')
-                        #print(time)
                         break
                     except Exception:
                         continue
@@ -902,7 +778,6 @@ def read_div(div_list,group_number,group_name,group_user_number,i,url,Massage_id
                         true_time = time1.text.strip()
                 # 记录第一次发消息时间和最后一次发消息时间
                 date= date_switch(date)
-                #print(true_time)
                 first_time = recode_first_time(first_time,user_name,date,true_time)
                 last_time = recode_last_time(last_time,user_name,date,true_time)
                 content_list,image_info,voice_info = get_text_img_voice(content_text_div,content_img,voices,filename,file_size,save_path)
@@ -1233,10 +1108,9 @@ def alter_state(information_path,state):
     # 将更新后的 JSON 数据写回文件
     with open(information_path, 'w') as file:
         file.write(updated_json)
-'''
-杀进程
-'''
+
 def find_and_kill_process(process_name,script_name,arg):
+   
     for proc in psutil.process_iter(['pid','name','cmdline']):
         #print(proc)
         if process_name.lower() in proc.info['name'].lower():
@@ -1250,63 +1124,6 @@ def find_and_kill_process(process_name,script_name,arg):
                     except ProcessLookupError:
                         continue
     return False
-
-def storage_spider_state(group_number,online,save_path):
-    online = int(online)
-    json_path = save_path+'group_state.json'
-    if os.path.exists(json_path)==False:
-        dic = {}
-        dic[group_number] = online
-        with open(json_path, 'w') as file:
-            list2 = [dic]
-            file.write(str(list2))
-            file.close()
-    else:
-        with open(json_path, 'r') as file:
-            file_content = file.read()
-            file.close()
-        file_content = file_content.replace("'", '"')
-
-        data = json.loads(file_content)
-        
-        dic = {}
-        dic[group_number] = online
-        dic1 = {group_number:1}
-        if online == -1 and dic1 in data:
-            if {group_number:-1} in data:
-                data.remove({group_number:-1})
-            if {group_number:1} in data:
-                data.remove({group_number:1})
-            with open(json_path, 'w') as file: 
-                
-                data.append(dic)
-                file.write(str(data))
-                file.close()
-                sys.exit(0);
-                    
-
-def judge_group(group_number,save_path,driver):
-    json_path = save_path+'group_state.json'
-    with open(json_path, 'r') as file:
-        file_content = file.read()
-    file_content = file_content.replace("'", '"')
-    data = json.loads(file_content)
-    file.close()
-    dic = {}
-    dic[group_number] = -1
-    if dic in data:
-        data.remove(dic)
-        with open(json_path, 'w') as file:
-            file.write(str(data))
-            file.close()
-        try:
-            shutil.rmtree(user_data_dir)
-        except Exception:
-            pass
-        quit(driver)
-        sys.exit(0)
-
-
 
 def main1():
     start_time = datetime.now().replace(microsecond=0)
@@ -1332,8 +1149,7 @@ def main1():
     group_list = []
     
     message_count = 0
-    storage_spider_state(group_id,online,save_path)
-    '''if online == '-1':
+    if online == '-1':
         if find_and_kill_process('python', script_name, group_id):
             print(f'已结束运行脚本{script_name}且群号为{group_id}的进程')
             if(os.path.exists(user_data_dir)):
@@ -1341,7 +1157,7 @@ def main1():
             return
         else:
             print(f'未找到运行脚本{script_name}且群号为{group_id}的进程')
-            sys.exit(0)'''
+            sys.exit(0)
     
     
     driver = driver_chat(url,username,password,browser,driver_path)
@@ -1349,29 +1165,25 @@ def main1():
     #group_number = config['group_number']
     Massage_id = 0
     
-    #time.sleep(5)
+    time.sleep(5)
     is_first_spider_flag = {}
     spider_div = {}
     spider_last_message_count = {}
     spider_div_count = {}
     while(1):
         try:
-            time.sleep(3)
             group_user_number = driver.find_elements_by_css_selector('a[class="d-flex w-100 justify-content-center"]')
-            #print(group_user_number)
             break
         except Exception:
             continue
-        
     # 依次遍历每个群聊，并获取其内容
     while (1):
         for i in range(1,len(group_user_number)+1):
             #print(last_message_count,div_count1)
             #try:
-            judge_group(group_id,save_path,driver)
             while(1):
                 try:
-                    #/html/body/div[2]/div/div[1]/div[1]/main/div/div[1]/div/div[2]/div[2]/div/div[1]/a  
+                                #/html/body/div[2]/div/div[1]/div[1]/main/div/div[1]/div/div[2]/div[2]/div/div[1]/a  
                     group = '/html/body/div[2]/div/div[1]/div[1]/main/div/div[1]/div/div[2]/div[2]/div/div['+str(i)+']/a'
                     #group = '/html/body/div[2]/div/div[1]/div[1]/main/div/div[1]/div/div[2]/div[2]/div/div['+str(i)+']/a'
                     driver,url1 = get_group_url(driver,group)
@@ -1432,10 +1244,10 @@ def main1():
                     close_file(group_info_file)
                 state = 'run'
                 save_information(information_path,start_time,state,Massage_id,user_detial_id,user_relation_id,i)
-                #time.sleep(int(number))
+                time.sleep(int(number))
             else:
                 continue   
-        #time.sleep(int(number))
+        time.sleep(int(number))
     quit(driver)
             
             
